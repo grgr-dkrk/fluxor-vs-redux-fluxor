@@ -1,0 +1,154 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 62.5%;
+    }
+
+    body {
+      font-family: '游ゴシック Medium', YuGothic, YuGothicM,
+        'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo,
+        sans-serif;
+      line-height: 1.4;
+      font-size: 1.6rem;
+    }
+
+    ul,
+    ol {
+      list-style-type: none;
+    }
+
+    html,
+    body,
+    #app,
+    .wrapper {
+      height: 100%;
+      width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    main {
+      display: block;
+    }
+
+    div,
+    h2,
+    h3,
+    p {
+      outline: none;
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      appearance: none;
+    }
+
+    main {
+  display: block;
+  max-width: 60em;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 10px;
+}
+
+main h1 {
+  text-align: center;
+  margin-bottom: .4em;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.form {
+  text-align: center;
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+}
+
+.form input {
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  margin-bottom: 40px;
+  font-size: 16px;
+  padding: 14px 8px;
+  width: 100%;
+}
+
+.form button {
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  display: block;
+  color: #ccc;
+  pointer-events: none;
+  font-size: 14px;
+  text-align: center;
+  width: 60%;
+  margin: 0 auto;
+  padding: 8px 0;
+  transition: .3s ease;
+}
+
+.form button.isActive {
+  background-color: #004D40;
+  border-color: #004D40;
+  color: #fff;
+  pointer-events: initial;
+}
+
+.todoItem {
+  animation: appear .4s;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px #ddd;
+  padding: 20px;
+  position: relative;
+  transition: .3s ease;
+}
+
+.todoItem:hover, .todoItem:focus {
+  transform: translateY(-3%);
+  opacity: .8;
+}
+
+.todoItem:nth-of-type(n + 2) {
+  margin-top: 20px;
+}
+
+.todoItem.isActive {
+  border: 1px solid #E0F2F1;
+  background-color: #E0F2F1;
+}
+
+.todoItem h3 {
+  margin-bottom: .4em;
+}
+
+.todoItem button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #fff;
+  font-size: 24px;
+  background-color: #B71C1C;
+  border-radius: 0 15px 0 15px;
+  padding: .4em;
+}

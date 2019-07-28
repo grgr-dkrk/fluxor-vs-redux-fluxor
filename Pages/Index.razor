@@ -1,0 +1,73 @@
+﻿@page "/"
+@using System.Linq;
+@using Blazor.Fluxor
+@using fluxor_vs_redux_fluxor.Components
+@using fluxor_vs_redux_fluxor.Store
+@inject IDispatcher Dispatcher
+@inject IState<AppState> AppState
+
+<h1>Redux Todo Blazor Edition</h1>
+
+<div class="form">
+  <input placeholder="タスク" @bind="@newItem" />
+  <button class=@(!string.IsNullOrWhiteSpace(newItem) ? "isActive" : "") @onclick="@AddAction" @onkeypress="@CheckKeys" type="button">追加</button>
+</div>
+
+@if (AppState.Value.TodoItems.Count() < 1)
+{
+  <p>タスクがないよ</p>
+}
+else
+{
+  <ul class="todoList">
+    @foreach (var item in AppState.Value.TodoItems)
+    {
+      <TodoListItem ItemId=@item.Id TaskText=@item.TaskText IsDone=@item.IsDone HandleRemove=@RemoveAction HandleToggleDoneTask=@ToggleDoneTask />
+    }
+  </ul>
+}
+
+@code {
+  private IList<TodoData> items = new List<TodoData>();
+  private string newItem;
+
+  private void AddAction()
+  {
+    Console.WriteLine("addAction");
+    if (!string.IsNullOrWhiteSpace(newItem))
+    {
+      var action = new AddTodoAction(newItem);
+      Dispatcher.Dispatch(action);
+      newItem = string.Empty;
+    }
+  }
+
+  private void RemoveAction(string Id)
+  {
+    Console.WriteLine("removeAction");
+    var action = new RemoveTodoAction(Id);
+    Dispatcher.Dispatch(action);
+  }
+
+  private void ToggleDoneTask(string Id)
+  {
+    Console.WriteLine("toggleAction");
+    var action = new ToggleDoneTaskAction(Id);
+    Dispatcher.Dispatch(action);
+  }
+
+  private void CheckKeys(UIKeyboardEventArgs args)
+  {
+    Console.WriteLine(args.Key);
+    if (args.Key == "Enter")
+      {
+        this.AddAction();
+      }
+  }
+
+  protected override void OnInit()
+    {
+      base.OnInit();
+      AppState.Subscribe(this);
+    }
+}

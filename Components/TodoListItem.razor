@@ -1,0 +1,37 @@
+<li class="todoItem @(IsDone ? "isActive" : "")" @onclick="@HandleClickToggleDoneTask">
+
+    <button aria-label="タスク消す" type="button" @onclick="@HandleClickRemove">
+      <IconTrash />
+    </button>
+
+    <h3>@TaskText</h3>
+
+    <p>@(IsDone ? "完了" : "未完了")</p>
+
+</li>
+
+@functions {
+  [Parameter]
+  private string ItemId { get; set; } = "";
+
+  [Parameter]
+  private string TaskText { get; set; } = "";
+
+  [Parameter]
+  private bool IsDone { get; set; } = false;
+
+  [Parameter]
+  public EventCallback<string> HandleRemove { get; set; }
+
+  [Parameter]
+  public EventCallback<string> HandleToggleDoneTask { get; set; }
+
+  public void HandleClickRemove() {
+    HandleRemove.InvokeAsync(this.ItemId);
+  }
+
+  public void HandleClickToggleDoneTask() {
+    HandleToggleDoneTask.InvokeAsync(this.ItemId);
+  }
+
+}
