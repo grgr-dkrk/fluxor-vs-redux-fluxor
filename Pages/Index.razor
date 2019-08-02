@@ -9,11 +9,11 @@
 
 <h1>Redux Todo Blazor Edition</h1>
 
-<p style="text-align: center;">ようこそ @(UserState.Value.Data?.Name ?? "ゲスト") さん</p>
+<p style="text-align: center; margin-bottom: 1.4em;">ようこそ @(UserState.Value.Data?.Name ?? "ゲスト") さん</p>
 
 <div class="form">
-  <input placeholder="タスク" @bind="@newItem" />
-  <button class=@(!string.IsNullOrWhiteSpace(newItem) ? "isActive" : "") @onclick="@AddAction" @onkeypress="@CheckKeys" type="button">追加</button>
+  <input placeholder="タスク" @bind="@newItem" @onkeypress="@CheckKeys" />
+  <button class=@(!string.IsNullOrWhiteSpace(newItem) ? "isActive" : "") @onclick="@AddAction" type="button">追加</button>
 </div>
 
 @if (TodoState.Value.TodoItems.Count() < 1)
