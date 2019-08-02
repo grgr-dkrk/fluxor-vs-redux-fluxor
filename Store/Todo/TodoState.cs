@@ -3,17 +3,14 @@ using fluxor_vs_redux_fluxor.Shared;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace fluxor_vs_redux_fluxor.Store {
-  public class AppState {
+namespace fluxor_vs_redux_fluxor.Store.Todo {
+  public class TodoState {
     public TodoData[] TodoItems { get; private set; }
-    public UserData User { get; private set; }
-    public AppState() {
+    public TodoState() {
       this.TodoItems = Array.Empty<TodoData>();
-      this.User = null;
     }
-    public AppState(IEnumerable<TodoData> TodoItems, UserData User) {
+    public TodoState(IEnumerable<TodoData> TodoItems) {
       this.TodoItems = TodoItems?.ToArray() ?? Array.Empty<TodoData>();
-      this.User = User;
     }
   }
 }

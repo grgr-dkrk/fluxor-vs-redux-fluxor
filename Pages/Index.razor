@@ -1,28 +1,29 @@
 ﻿@page "/"
-@using System.Linq;
 @using Blazor.Fluxor
 @using fluxor_vs_redux_fluxor.Components
-@using fluxor_vs_redux_fluxor.Store
+@using Store.Todo;
+@using Store.User;
 @inject IDispatcher Dispatcher
-@inject IState<AppState> AppState
+@inject IState<TodoState> TodoState;
+@inject IState<UserState> UserState;
 
 <h1>Redux Todo Blazor Edition</h1>
 
-<p>ようこそ @(AppState.Value.User?.Name ?? "ゲスト") さん</p>
+<p style="text-align: center;">ようこそ @(UserState.Value.Data?.Name ?? "ゲスト") さん</p>
 
 <div class="form">
   <input placeholder="タスク" @bind="@newItem" />
   <button class=@(!string.IsNullOrWhiteSpace(newItem) ? "isActive" : "") @onclick="@AddAction" @onkeypress="@CheckKeys" type="button">追加</button>
 </div>
 
-@if (AppState.Value.TodoItems.Count() < 1)
+@if (TodoState.Value.TodoItems.Count() < 1)
 {
   <p>タスクがないよ</p>
 }
 else
 {
   <ul class="todoList">
-    @foreach (var item in AppState.Value.TodoItems)
+    @foreach (var item in TodoState.Value.TodoItems)
     {
       <TodoListItem ItemId=@item.Id TaskText=@item.TaskText IsDone=@item.IsDone HandleRemove=@RemoveAction HandleToggleDoneTask=@ToggleDoneTask />
     }
@@ -71,6 +72,7 @@ else
     {
       base.OnInit();
       Dispatcher.Dispatch(new FetchUserDataAction());
-      AppState.Subscribe(this);
+      TodoState.Subscribe(this);
+      UserState.Subscribe(this);
     }
 }

@@ -1,7 +1,7 @@
 using Blazor.Fluxor;
 using fluxor_vs_redux_fluxor.Shared;
 
-namespace fluxor_vs_redux_fluxor.Store
+namespace fluxor_vs_redux_fluxor.Store.User
 {
   public class FetchUserDataSucceedAction : IAction
   {

@@ -6,7 +6,7 @@ using System.Net.Http;
 
 using System.Threading.Tasks;
 
-namespace fluxor_vs_redux_fluxor.Store
+namespace fluxor_vs_redux_fluxor.Store.User
 {
   public class FetchUserDataEffect : Effect<FetchUserDataAction>
   {
@@ -22,14 +22,15 @@ namespace fluxor_vs_redux_fluxor.Store
       Console.WriteLine("fetchAction");
       try {
         var client = HttpClient.CreateClient();
+        // API
         await Task.Delay(2000);
         userData.Id = 0;
         userData.Name = "dkrk0901";
+        // /API
         var complete = new FetchUserDataSucceedAction(userData);
         dispatcher.Dispatch(complete);
       }
-      catch(Exception e) {
-        Console.WriteLine(e);
+      catch {
         return;
       }
     }
