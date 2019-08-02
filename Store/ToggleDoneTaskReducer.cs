@@ -14,7 +14,7 @@ namespace fluxor_vs_redux_fluxor.Store
           data.IsDone = data.IsDone ? false : true;
         }
       });
-      return new AppState(TodoItems: newitems);
+      return new AppState(TodoItems: newitems, User: state.User);
     }
   }
 }

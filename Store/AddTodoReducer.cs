@@ -12,7 +12,7 @@ namespace fluxor_vs_redux_fluxor.Store
       var newitems = new List<TodoData>(state.TodoItems);
       var guid = Guid.NewGuid();
       newitems.Add(new TodoData() { Id = guid.ToString(), TaskText = action.TaskText, IsDone = false });
-      return new AppState(TodoItems: newitems);
+      return new AppState(TodoItems: newitems, User: state.User);
     }
   }
 }

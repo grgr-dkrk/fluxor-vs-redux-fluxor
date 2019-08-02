@@ -10,7 +10,7 @@ namespace fluxor_vs_redux_fluxor.Store
     {
       var newitems = new List<TodoData>(state.TodoItems);
       newitems.RemoveAll(x => x.Id == action.Id);
-      return new AppState(TodoItems: newitems);
+      return new AppState(TodoItems: newitems, User: state.User);
     }
   }
 }

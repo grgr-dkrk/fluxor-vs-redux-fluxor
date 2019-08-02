@@ -8,6 +8,8 @@
 
 <h1>Redux Todo Blazor Edition</h1>
 
+<p>ようこそ @(AppState.Value.User?.Name ?? "ゲスト") さん</p>
+
 <div class="form">
   <input placeholder="タスク" @bind="@newItem" />
   <button class=@(!string.IsNullOrWhiteSpace(newItem) ? "isActive" : "") @onclick="@AddAction" @onkeypress="@CheckKeys" type="button">追加</button>
@@ -68,6 +70,7 @@ else
   protected override void OnInit()
     {
       base.OnInit();
+      Dispatcher.Dispatch(new FetchUserDataAction());
       AppState.Subscribe(this);
     }
 }
