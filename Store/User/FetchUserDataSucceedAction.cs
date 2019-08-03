@@ -3,7 +3,7 @@ using fluxor_vs_redux_fluxor.Shared;
 
 namespace fluxor_vs_redux_fluxor.Store.User
 {
-  public class FetchUserDataSucceedAction : IAction
+  public class FetchUserDataSucceedAction
   {
     public UserData UserData { get; private set; }
 

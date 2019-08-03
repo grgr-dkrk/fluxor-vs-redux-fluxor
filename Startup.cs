@@ -25,7 +25,7 @@ namespace fluxor_vs_redux_fluxor
             services.AddServerSideBlazor();
             services.AddFluxor(options => options
               .UseDependencyInjection(typeof(Startup).Assembly)
-              .AddMiddleware<Blazor.Fluxor.ReduxDevTools.ReduxDevToolsMiddleware>()
+            //   .AddMiddleware<Blazor.Fluxor.ReduxDevTools.ReduxDevToolsMiddleware>()
             //   .AddMiddleware<Blazor.Fluxor.Routing.RoutingMiddleware>()
             );
         }
